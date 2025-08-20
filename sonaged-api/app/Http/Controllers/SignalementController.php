@@ -98,6 +98,46 @@ class SignalementController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage (public route - no authentication required).
+     */
+    public function storePublic(Request $request): JsonResponse
+    {
+        $request->validate([
+            'titre' => 'required|string|max:200',
+            'description' => 'required|string',
+            'type' => 'required|in:dechet,pollution,autre',
+            'urgence' => 'required|in:faible,moyenne,haute,critique',
+            'latitude' => 'nullable|numeric|between:-90,90',
+            'longitude' => 'nullable|numeric|between:-180,180',
+            'adresse' => 'nullable|string|max:255',
+            'photos' => 'nullable|array',
+            'photos.*' => 'string'
+        ]);
+
+        // Créer un utilisateur anonyme ou utiliser un utilisateur par défaut
+        $anonymousUserId = 1; // ID d'un utilisateur par défaut dans la base de données
+
+        $signalement = Signalement::create([
+            'user_id' => $anonymousUserId,
+            'titre' => $request->titre,
+            'description' => $request->description,
+            'type' => $request->type,
+            'urgence' => $request->urgence,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'adresse' => $request->adresse,
+            'photos' => $request->photos,
+            'statut' => 'en_attente'
+        ]);
+
+        return response()->json([
+            'message' => 'Signalement créé avec succès',
+            'data' => $signalement->load('user'),
+            'note' => 'Pour gagner des points, connectez-vous à votre compte'
+        ], 201);
+    }
+
+    /**
      * Display the specified resource.
      */
     public function show(string $id): JsonResponse

@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('titre');
             $table->text('description');
             $table->enum('type', ['dechet', 'pollution', 'autre'])->default('dechet');
-            $table->enum('urgence', ['faible', 'moyenne', 'elevee'])->default('moyenne');
-            $table->decimal('latitude', 10, 8);
-            $table->decimal('longitude', 11, 8);
-            $table->string('adresse');
-            $table->enum('statut', ['nouveau', 'en_attente', 'en_cours', 'resolu', 'ferme'])->default('nouveau');
+            $table->enum('urgence', ['faible', 'moyenne', 'haute', 'critique'])->default('moyenne');
+            $table->decimal('latitude', 10, 8)->nullable();
+            $table->decimal('longitude', 11, 8)->nullable();
+            $table->string('adresse')->nullable();
+            $table->enum('statut', ['en_attente', 'en_cours', 'resolu', 'rejete'])->default('en_attente');
             $table->json('photos')->nullable();
             $table->json('ia_analysis')->nullable();
             $table->timestamps();

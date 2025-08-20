@@ -31,6 +31,9 @@ Route::get('/test', function () {
 Route::post('/auth/register', [App\Http\Controllers\AuthController::class, 'register']);
 Route::post('/auth/login', [App\Http\Controllers\AuthController::class, 'login']);
 
+// Route publique pour créer des signalements (sans authentification)
+Route::post('/signalements/public', [App\Http\Controllers\SignalementController::class, 'storePublic']);
+
 // Routes protégées par authentification
 Route::middleware('auth:sanctum')->group(function () {
     // Routes des signalements

@@ -1,228 +1,260 @@
-# 🏗️ SONAGED Digital Platform
+# 🌱 SONAGED Digital Platform - Frontend
 
-Plateforme numérique intelligente pour la gestion des déchets au Sénégal.
+## 📋 Vue d'ensemble
 
-## 📋 Vue d'Ensemble
+**SONAGED** (Société Nationale de Gestion des Déchets) est une plateforme digitale complète pour la gestion intelligente des déchets au Sénégal. Cette application web administrative offre une interface centralisée pour la supervision des opérations, le monitoring environnemental et la conformité ISO 14001.
 
-SONAGED Digital Platform est une solution complète comprenant :
+## ✨ Fonctionnalités Principales
 
-- **📱 PWA EcoCitizen** : Application mobile pour les citoyens
-- **🖥️ Dashboard Admin** : Interface web pour les gestionnaires SONAGED
-- **🤝 Portail Partenaires** : Interface web pour les acteurs de l'économie circulaire
+### 🎯 Dashboard Administratif
+- **KPI en temps réel** : Taux de collecte, conformité ISO 14001, véhicules actifs
+- **Graphiques interactifs** : Évolution des performances avec Chart.js
+- **Système d'alertes** : Notifications automatiques et gestion des incidents
+- **Cartographie opérationnelle** : Suivi GPS des véhicules et équipes
 
-## 🛠️ Stack Technologique
+### 🌍 Monitoring Environnemental
+- **Capteurs IoT** : Qualité de l'air, eau, niveau sonore, déchets
+- **Alertes automatiques** : Seuils configurables et notifications
+- **Indicateurs Technopole** : Suivi des zones sensibles
 
-- **Backend** : Laravel 11 + MySQL 8
-- **Frontend** : Angular 17 + TypeScript
-- **APIs Externes** : Google Maps, OpenAI, Firebase
-- **Architecture** : API REST + SPA découplées
+### 🚛 Gestion Opérationnelle
+- **Supervision des équipes** : Localisation et statut en temps réel
+- **Planification des tournées** : Optimisation des routes de collecte
+- **Gestion des incidents** : Suivi et résolution des problèmes
 
-## 🚀 Démarrage Rapide
+### 📊 Conformité & Reporting
+- **ISO 14001** : Traçabilité complète et indicateurs de performance
+- **Rapports automatisés** : Génération PDF/CSV/JSON
+- **Audit trail** : Historique des actions et modifications
+
+## 🏗️ Architecture Technique
+
+### Frontend
+- **Framework** : Angular 17 (Standalone Components)
+- **UI Components** : Angular Material Design
+- **Charts** : Chart.js avec composants réutilisables
+- **Maps** : Google Maps API intégrée
+- **State Management** : RxJS avec services injectables
+
+### Composants Partagés
+- `KpiCardComponent` : Affichage des indicateurs clés
+- `ChartComponent` : Graphiques Chart.js configurables
+- `AlertPanelComponent` : Gestion des alertes et notifications
+- `MapComponent` : Cartographie interactive avec Google Maps
+
+### Services Core
+- `DashboardService` : Données du tableau de bord
+- `AlertService` : Gestion des alertes système
+- `AuthService` : Authentification et autorisation
+- `AnalyticsService` : Données d'analyse et rapports
+
+## 🚀 Installation et Démarrage
 
 ### Prérequis
-
-- PHP 8.2+
-- Node.js 18+
-- MySQL 8.0+
-- Composer
-- Angular CLI
+- Node.js 18+ et npm
+- Angular CLI 17+
+- Git
 
 ### Installation
-
-1. **Cloner le projet**
 ```bash
-git clone <repository-url>
-cd SonagedDigitalPlatform
-```
+# Cloner le projet
+git clone [URL_DU_REPO]
+cd SonagedDigitalPlatform/sonaged-frontend
 
-2. **Initialiser la base de données**
-```bash
-cd sonaged-api
-./init-database.ps1
-```
-
-3. **Installer les dépendances frontend**
-```bash
-cd ../sonaged-frontend
+# Installer les dépendances
 npm install
+
+# Vérifier la configuration
+npm run type-check
 ```
 
-4. **Démarrer l'application**
+### Démarrage
 ```bash
-cd ..
-./start-sonaged.ps1
+# Mode développement (port 4201)
+npm run start:admin
+
+# Build de production
+npm run build:admin
+
+# Build avec optimisation
+npm run build:admin --prod
 ```
-
-## 🔑 Configuration des APIs
-
-Avant d'utiliser l'application, configurez les clés API :
-
-1. **Suivez le guide** : `CONFIGURATION_API_KEYS.md`
-2. **Modifiez** : `sonaged-frontend/src/environments/environment.ts`
-3. **Testez** : Vérifiez la console du navigateur
-
-## 👥 Comptes de Test
-
-L'application inclut des comptes de test préconfigurés :
-
-| Rôle | Email | Mot de passe |
-|------|-------|--------------|
-| 👨‍💼 Admin | admin@sonaged.sn | admin123 |
-| 🤝 Partenaire | partenaire@sonaged.sn | partenaire123 |
-| 👤 Citoyen | citoyen@sonaged.sn | citoyen123 |
-
-## 🌐 Accès aux Interfaces
-
-- **PWA EcoCitizen** : http://localhost:4200
-- **Dashboard Admin** : http://localhost:4200/admin
-- **Portail Partenaires** : http://localhost:4200/partenaires
-- **API Laravel** : http://localhost:8000
 
 ## 📁 Structure du Projet
 
 ```
-SonagedDigitalPlatform/
-├── sonaged-api/                 # Backend Laravel
+sonaged-frontend/
+├── src/
 │   ├── app/
-│   │   ├── Http/Controllers/    # Contrôleurs API
-│   │   ├── Models/              # Modèles Eloquent
-│   │   └── Services/            # Services métier
-│   ├── database/
-│   │   ├── migrations/          # Migrations DB
-│   │   └── seeders/             # Seeders
-│   └── routes/api.php           # Routes API
-├── sonaged-frontend/            # Frontend Angular
-│   ├── src/
-│   │   ├── app/
-│   │   │   ├── core/            # Services, guards, interceptors
-│   │   │   ├── features/        # Modules fonctionnels
-│   │   │   └── shared/          # Composants partagés
-│   │   └── environments/        # Configuration
-│   └── package.json
-├── CONFIGURATION_API_KEYS.md    # Guide configuration APIs
-├── init-database.ps1            # Script initialisation DB
-└── start-sonaged.ps1           # Script démarrage
+│   │   ├── core/
+│   │   │   ├── services/          # Services métier
+│   │   │   ├── interfaces/        # Types TypeScript
+│   │   │   └── interceptors/      # Intercepteurs HTTP
+│   │   ├── shared/
+│   │   │   └── components/        # Composants réutilisables
+│   │   └── features/
+│   │       ├── admin/             # Modules administratifs
+│   │       │   ├── dashboard/     # Tableau de bord principal
+│   │       │   ├── cartographie/  # Cartographie opérationnelle
+│   │       │   ├── monitoring/    # Monitoring environnemental
+│   │       │   ├── operations/    # Gestion opérationnelle
+│   │       │   ├── supervision/   # Supervision terrain
+│   │       │   ├── compliance/    # Conformité ISO 14001
+│   │       │   ├── system/        # Administration système
+│   │       │   ├── users/         # Gestion des utilisateurs
+│   │       │   ├── settings/      # Configuration
+│   │       │   └── iot/           # IoT et capteurs
+│   │       ├── auth/              # Authentification
+│   │       └── analytics/         # Analyses et rapports
+│   ├── environments/              # Configuration par environnement
+│   └── assets/                    # Ressources statiques
+├── package.json
+├── angular.json
+└── tsconfig.json
 ```
 
-## 🔧 Développement
+## 🔧 Configuration
 
-### Backend (Laravel)
+### Variables d'Environnement
+```typescript
+// src/environments/environment.admin.ts
+export const environment = {
+  production: false,
+  apiUrl: 'http://127.0.0.1:8000/api',
+  appName: 'SONAGED Admin - Gestion Centralisée',
+  port: 4201,
+  
+  // API Keys (à configurer)
+  openaiApiKey: 'DEMO_KEY',
+  googleMapsApiKey: 'DEMO_GOOGLE_MAPS_KEY',
+  
+  // Modules SONAGED
+  modules: {
+    birmax: { enabled: true, apiUrl: 'http://127.0.0.1:8001/api' },
+    digibac: { enabled: true, apiUrl: 'http://127.0.0.1:8002/api' },
+    bipro: { enabled: true, apiUrl: 'http://127.0.0.1:8003/api' },
+    alloDechets: { enabled: true, apiUrl: 'http://127.0.0.1:8004/api' }
+  }
+};
+```
 
+### Dépendances Principales
+```json
+{
+  "dependencies": {
+    "@angular/core": "^17.0.0",
+    "@angular/material": "^17.0.0",
+    "@angular/google-maps": "^17.0.0",
+    "chart.js": "^4.0.0",
+    "rxjs": "^7.0.0"
+  }
+}
+```
+
+## 🧪 Tests et Validation
+
+### Vérification des Types
 ```bash
-cd sonaged-api
-
-# Démarrer le serveur de développement
-php artisan serve
-
-# Exécuter les migrations
-php artisan migrate
-
-# Exécuter les seeders
-php artisan db:seed
-
-# Générer un nouveau contrôleur
-php artisan make:controller NomController --api
+npm run type-check
 ```
 
-### Frontend (Angular)
-
+### Tests Unitaires
 ```bash
-cd sonaged-frontend
-
-# Démarrer le serveur de développement
-npm start
-
-# Construire pour la production
-npm run build
-
-# Générer un nouveau composant
-ng generate component nom-du-composant
+npm run test
 ```
 
-## 🧪 Tests
-
+### Tests E2E
 ```bash
-# Tests backend
-cd sonaged-api
-php artisan test
-
-# Tests frontend
-cd sonaged-frontend
-npm test
+npm run e2e
 ```
 
-## 📊 Fonctionnalités Principales
-
-### PWA EcoCitizen
-- ✅ Signalement géolocalisé de déchets
-- ✅ Upload d'images avec analyse IA
-- ✅ Système de gamification (points/badges)
-- ✅ Mode offline
-- ✅ Notifications push
-- ✅ Interface multilingue
-
-### Dashboard Admin
-- ✅ Tableaux de bord KPI temps réel
-- ✅ Gestion des signalements
-- ✅ Planification des collectes
-- ✅ Analytics et reporting
-- ✅ Gestion des partenaires
-
-### Portail Partenaires
-- ✅ Marketplace de déchets
-- ✅ Système d'enchères
-- ✅ Certification et traçabilité
-- ✅ Géolocalisation des gisements
-
-## 🔒 Sécurité
-
-- Authentification JWT avec Laravel Sanctum
-- Validation des données côté serveur
-- Protection CORS configurée
-- Hachage sécurisé des mots de passe
-- Gestion des rôles et permissions
-
-## 📈 Performance
-
-- Lazy loading Angular
-- Cache Redis pour les sessions
-- Optimisation des requêtes MySQL
-- Service Worker pour le mode offline
-- Compression des assets
-
-## 🚀 Déploiement
-
-### Production
-
-1. **Configurer les variables d'environnement**
-2. **Construire le frontend** : `npm run build`
-3. **Configurer le serveur web** (Apache/Nginx)
-4. **Configurer la base de données MySQL**
-5. **Configurer Redis** (optionnel)
-
-### Docker (Optionnel)
-
+### Linting
 ```bash
-# Construire les images
-docker-compose build
-
-# Démarrer les services
-docker-compose up -d
+npm run lint
 ```
 
-## 📞 Support
+## 📊 État Actuel du Projet
 
-Pour toute question ou problème :
+### ✅ **Complété**
+- [x] Architecture Angular 17 complète
+- [x] Composants partagés (KPI, Chart, Alert, Map)
+- [x] Dashboard administratif fonctionnel
+- [x] Services core avec données de démonstration
+- [x] Tous les modules admin créés
+- [x] Compilation sans erreurs
+- [x] Démarrage de l'application réussi
 
-1. Consultez la documentation technique
-2. Vérifiez les logs d'erreur
-3. Contactez l'équipe de développement
+### 🔄 **En Cours**
+- [ ] Intégration des vraies API backend
+- [ ] Configuration des clés API (Google Maps, OpenAI)
+- [ ] Tests unitaires et d'intégration
+- [ ] Optimisation des performances
 
-## 📄 Licence
+### 📋 **À Faire**
+- [ ] Déploiement en production
+- [ ] Monitoring et logging
+- [ ] Documentation utilisateur
+- [ ] Formation des équipes
 
-Ce projet est développé pour SONAGED (Société Nationale de Gestion des Déchets).
+## 🌐 Déploiement
+
+### Build de Production
+```bash
+npm run build:admin --prod
+```
+
+### Serveur de Production
+```bash
+# Utiliser un serveur web (nginx, Apache)
+# ou déployer sur une plateforme cloud
+```
+
+## 🔐 Sécurité
+
+- **Authentification** : JWT avec refresh tokens
+- **Autorisation** : Rôles et permissions granulaires
+- **HTTPS** : Obligatoire en production
+- **Validation** : Sanitisation des entrées utilisateur
+- **Audit** : Logs de toutes les actions sensibles
+
+## 📞 Support et Contact
+
+### Équipe Technique
+- **Lead Developer** : [Nom]
+- **Architect** : [Nom]
+- **DevOps** : [Nom]
+
+### Documentation
+- **API Docs** : [Lien]
+- **User Manual** : [Lien]
+- **Technical Specs** : [Lien]
+
+## 📈 Roadmap
+
+### Phase 1 (Actuelle) ✅
+- Architecture de base
+- Dashboard principal
+- Composants partagés
+
+### Phase 2 (Q1 2024)
+- Intégration backend
+- Tests complets
+- Optimisation
+
+### Phase 3 (Q2 2024)
+- Fonctionnalités avancées
+- Mobile app
+- IA et ML
+
+## 🎯 Objectifs
+
+1. **Réduction des coûts** : Optimisation des tournées de collecte
+2. **Amélioration de la qualité** : Monitoring en temps réel
+3. **Conformité réglementaire** : ISO 14001 et normes locales
+4. **Transparence citoyenne** : Données ouvertes et rapports
+5. **Innovation technologique** : IoT, IA, et analytics avancés
 
 ---
 
-**Note** : Assurez-vous de configurer les clés API avant d'utiliser l'application en production.
+**SONAGED Digital Platform** - Transformant la gestion des déchets au Sénégal 🌱🇸🇳
 
